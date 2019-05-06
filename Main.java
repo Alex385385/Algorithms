@@ -5,22 +5,25 @@ import java.util.Collections;
 public class Main {
 
     public static void main(String[] args) {
-        Item it = new Item();
+        Item it;
         ArrayList<Item> itemHolder = new ArrayList<Item>();
+        Scanner kb = new Scanner(System.in);
+
         int itemSize;
         int counter = 0;
-        Scanner kb = new Scanner(System.in);
+        double W;
+
         System.out.print("How many items are you inputting? ");
         itemSize = kb.nextInt();
 
         while(counter < itemSize){
             it = new Item();
             System.out.print("Please enter weight for item " + (counter + 1) + ": ");
-            it.setW(kb.nextDouble());
+            it.setWeight(kb.nextDouble());
 
 
             System.out.print("Please enter profit for item " + (counter + 1) + ": ");
-            it.setP(kb.nextDouble());
+            it.setProfit(kb.nextDouble());
 
             System.out.println();
 
@@ -30,19 +33,19 @@ public class Main {
 
             counter++;
         }
-
         Collections.sort(itemHolder);
 
+        System.out.print("Please enter maximum weight: ");
+        W = kb.nextInt();
 
-        double W = 16.0;
         double[] w = {2, 5, 10, 5};
         double[] p = {40, 30, 50, 10};
         String[] include = new String[4];
 
         System.out.println("Brute Force: ");
-        Brute_Force bf = new Brute_Force(W, w, p, w.length -1);
-        bf.knapsack(-1, 0.0, 0.0, include);
-        bf.print();
+        Brute_Force temp = new Brute_Force(W, itemHolder, itemSize - 1);
+        temp.knapsack(-1, 0.0, 0.0, include);
+        temp.print();
 
         System.out.println("Backtracking: ");
         Backtracking bt = new Backtracking(W, w, p, w.length - 1);

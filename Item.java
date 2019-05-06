@@ -1,11 +1,11 @@
 public class Item implements Comparable<Item> {
-    private double w;
-    private double p;
+    private double weight;
+    private double profit;
     private int ratio;
 
     public Item(double w, double p) {
-        this.w = w;
-        this.p = p;
+        this.weight = w;
+        this.profit = p;
         this.ratio = (int) (p / w);
     }
 
@@ -13,24 +13,24 @@ public class Item implements Comparable<Item> {
 
     }
 
-    public void setW(double w) {
-        this.w = w;
+    public void setWeight(double w) {
+        this.weight = w;
     }
 
-    public void setP(double p) {
-        this.p = p;
+    public void setProfit(double p) {
+        this.profit = p;
     }
 
     public void setRatio() {
-        this.ratio = (int) (p / w);
+        this.ratio = (int) (profit / weight);
     }
 
-    public double getW() {
-        return w;
+    public double getWeight() {
+        return weight;
     }
 
-    public double getP() {
-        return p;
+    public double getProfit() {
+        return profit;
     }
 
     public double getRatio() {

@@ -1,23 +1,22 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Brute_Force {
+    private Item it;
     private double maxProfit;
     private double W;
     private int numBest;
     private String[] bestSet;
     private int n;
-    private double[] w;
-    private double[] p;
     private int counter = 0;
+    private ArrayList<Item> itemHolder;
 
-    public Brute_Force(double W, double[] w, double[] p, int n) {
+    public Brute_Force(double W, ArrayList<Item> holder,int n) {
         this.W = W;
-        this.w = w;
-        this.p = p;
+        this.itemHolder = holder;
         this.n = n;
         bestSet = new String[n + 1];
     }
-
 
     public void knapsack(int i, double profit, double weight, String[] include) {
         if((weight <= W) && (profit > maxProfit)) {
@@ -27,10 +26,9 @@ public class Brute_Force {
         }
         counter++;
 
-
         if(promising(i, n + 1)) {
-            include[i+1] = "yes";
-            knapsack(i + 1, profit + p[i+1], weight + w[i+1], include);
+            include[i + 1] = "yes";
+            knapsack(i+1, profit+(itemHolder.get(i+1).getProfit()), weight+(itemHolder.get(i+1).getWeight()), include);
             include[i + 1] = "no";
             knapsack(i + 1, profit, weight, include);
         }
@@ -40,7 +38,6 @@ public class Brute_Force {
         if(i == n - 1) {
             return false;
         }
-
         return true;
     }
 
