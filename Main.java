@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         Item it;
-        ArrayList<Item> itemHolder = new ArrayList<Item>();
+        ArrayList<Item> itemHolder = new ArrayList<>();
         Scanner kb = new Scanner(System.in);
 
         int itemSize;
@@ -48,30 +48,16 @@ public class Main {
         temp.print();
 
         System.out.println("Backtracking: ");
-        Backtracking bt = new Backtracking(W, w, p, w.length - 1);
+        Backtracking bt = new Backtracking(W, itemHolder, itemSize - 1);
         bt.knapsack(-1, 0.0, 0.0, include);
         bt.print();
 
         System.out.println("Branch and Bound: ");
         BranchandBound bg = new BranchandBound();
-        bg.knapsack(3, p, w, W);
+        bg.knapsack(itemSize - 1, itemHolder, W);
         bg.print();
 
         System.out.println("Done");
 
     }
 }
-/*
-        int W = 8;
-        int[] w = {1, 5, 3, 4};
-        int[] p = {15, 10, 9, 5};
-        String[] include = new String[4];
-
-        Backtracking bg = new Backtracking(W, w, p);
-
-        bg.knapsack(-1, 0, 0, include);
-
-        bg.print();
-
-        System.out.println("Done");
- */

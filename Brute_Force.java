@@ -22,7 +22,7 @@ public class Brute_Force {
         if((weight <= W) && (profit > maxProfit)) {
             maxProfit = profit;
             numBest = i;
-            bestSet = Arrays.copyOf(include, include.length);
+            bestSet = Arrays.copyOf(include, i + 1);
         }
         counter++;
 

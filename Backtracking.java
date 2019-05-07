@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Backtracking {
@@ -6,39 +7,37 @@ public class Backtracking {
     private int numBest;
     private String[] bestSet;
     private int n;
-    private double[] w;
-    private double[] p;
     private int counter = 0;
+    private ArrayList<Item> itemHolder;
 
-    public Backtracking(double W, double[] w, double[] p, int n) {
+
+    public Backtracking(double W, ArrayList<Item> holder, int n) {
         this.W = W;
-        this.w = w;
-        this.p = p;
+        this.itemHolder = holder;
         this.n = n;
         bestSet = new String[n + 1];
     }
-
 
     public void knapsack(int i, double profit, double weight, String[] include) {
         if((weight <= W) && (profit > maxProfit)) {
             maxProfit = profit;
             numBest = i;
-            bestSet = Arrays.copyOf(include, include.length);
+            bestSet = Arrays.copyOf(include, i + 1);
         }
         counter++;
 
         if(promising(i, profit, weight)) {
             include[i+1] = "yes";
-            knapsack(i + 1, profit + p[i+1], weight + w[i+1], include);
+            knapsack(i+1, profit+(itemHolder.get(i+1).getProfit()), weight+(itemHolder.get(i+1).getWeight()), include);
             include[i + 1] = "no";
             knapsack(i + 1, profit, weight, include);
         }
     }
 
     private boolean promising(int i, double profit, double weight) {
-        double totweight = 0;
+        double totWeight = 0;
         double bound = 0;
-        int j, k;
+        int j;
 
         if(weight >= W) {
             return false;
@@ -46,15 +45,15 @@ public class Backtracking {
         else {
             j = i + 1;
             bound = profit;
-            totweight = weight;
-            while(j <= n && totweight + w[j] <= W) {
-                totweight = totweight + w[j];
-                bound = bound + p[j];
+            totWeight = weight;
+
+            while(j <= n && totWeight + (itemHolder.get(j).getWeight()) <= W) {
+                totWeight = totWeight + itemHolder.get(j).getWeight();
+                bound = bound + itemHolder.get(j).getProfit();
                 j++;
             }
-            //k = j;
             if(j <= n) {
-                bound = bound + (W - totweight) * p[j]/w[j];
+                bound = bound + (W - totWeight) * itemHolder.get(j).getProfit() / itemHolder.get(j).getWeight();
             }
         }
         return bound > maxProfit;
