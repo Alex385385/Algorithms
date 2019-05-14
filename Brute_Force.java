@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Brute_Force {
-    private Item it;
     private double maxProfit;
     private double W;
     private int numBest;

@@ -35,7 +35,7 @@ public class Main {
         }
         Collections.sort(itemHolder);
 
-        System.out.print("Please enter maximum weight: ");
+        System.out.print("Please enter maximum weight the bag can hold: ");
         W = kb.nextInt();
 
         double[] w = {2, 5, 10, 5};

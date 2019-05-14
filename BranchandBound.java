@@ -43,9 +43,6 @@ public class BranchandBound {
                 }
 
                 u = new node();
-                u.setLevel(v.getLevel() + 1);
-                u.setWeight(v.getWeight() + holder.get(u.getLevel()).getWeight());
-                u.setProfit(v.getProfit() + holder.get(u.getLevel()).getProfit());
             }
         }
     }
