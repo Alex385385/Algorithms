@@ -38,9 +38,7 @@ public class Main {
         System.out.print("Please enter maximum weight the bag can hold: ");
         W = kb.nextInt();
 
-        double[] w = {2, 5, 10, 5};
-        double[] p = {40, 30, 50, 10};
-        String[] include = new String[4];
+        String[] include = new String[itemSize];
 
         System.out.println("Brute Force: ");
         Brute_Force temp = new Brute_Force(W, itemHolder, itemSize - 1);
